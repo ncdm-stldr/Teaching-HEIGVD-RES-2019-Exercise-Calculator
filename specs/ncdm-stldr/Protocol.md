@@ -1,22 +1,51 @@
-*What transport protocol do we use?
-TCP.
+###Transport protocol
 
-*How does the client find the server (addresses and ports)?
-The port could be hardcoded, and the adress is specified by the client who already knows the adress of the server.
+We have to use TCP.
 
-*Who speaks first?
-The client speaks first.
+###Addresses and ports
 
-*What is the sequence of messages exchanged by the client and the server?
-The client initiate a tcp connection with the server.
-Once the connection is etablished, the client can submit a calculation. The server answer to say if he accept to perform the calculation.
-When the server terminates, he notify the client by sending the answer.
+ports : 2424
 
-*What happens when a message is received from the other party?
-An error or ok message is sent back.
+##Speak first
 
-*What is the syntax of the messages? How we generate and parse them?
-The message content is stored in xml format. A flag called calculation stores the calculation.
+The server will speak first and give commands.
 
-*Who closes the connection and when?
-The client closes the connection when he doesn't need to submit calculation requests anymore.
+##Sequence
+
+s. Welcome to Simple Calculator.
+
+​	You can ask for addition (X + Y)
+
+​	You can ask for subtraction (X - Y)
+
+​	You can ask for multiplication (X * Y)
+
+​	You can ask for division (X / Y)
+
+​	You can leave with BYE
+
+c. 3 + 3
+
+s. 3.0 + 3.0 = 6.0
+
+Do you need something else ? 
+
+If you want to see the command again use CMD
+
+c. BYE 
+
+##FAIL MESSAGE
+
+c. x + y 
+
+s. Wrong syntaxe, try again
+
+c. BYE 
+
+##SYNTAX
+
+We only use parsing from a string in utf-8.
+
+##Closing and When
+
+The client will send the command BYE and it will stop the server.
